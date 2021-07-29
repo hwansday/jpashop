@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import jpabook.jpashop.domain.Member;
 
 @SpringBootTest
-class MemberRepositoryTest {
+class MemberRepository_oldTest {
 
-    @Autowired
-    MemberRepository memberRepository;
+    @Autowired MemberRepository_old memberRepository_old;
+
 
     @Test
     @Transactional // 테스트가 종료되고 자동으로 롤백 처리됨
@@ -20,8 +20,8 @@ class MemberRepositoryTest {
     public void testMember(){
         Member member = new Member();
         member.setUsername("memberA");
-        Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
+        Long savedId = memberRepository_old.save(member);
+        Member findMember = memberRepository_old.find(savedId);
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
         Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
         Assertions.assertThat(findMember).isEqualTo(member); //JPA 엔티티 동일성 보장
